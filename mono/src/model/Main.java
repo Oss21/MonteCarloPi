@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		int seed = 1;
-		double size = 100000.0;
+		double size = 1000.0;
 		//double size = 1000000000000.0;
 		int numberPartition = 8;
 		double rangePartition = size / numberPartition;

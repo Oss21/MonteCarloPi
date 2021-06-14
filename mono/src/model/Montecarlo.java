@@ -53,7 +53,6 @@ public class Montecarlo {
 	/**
 	 * Este metodo permite calcular las coordenadas para el circulo.
 	 * 
-	 * @param random
 	 */
 	private void calculateCoordenateCircle() {
 		double result = Math.pow(xCoordSquare, 2) + Math.pow(yCoordSquare, 2);
