@@ -38,6 +38,7 @@ public class Montecarlo {
 		System.out.println("pi: "+pi);
 
 	}
+
 	/**
 	 * Este metodo permite calcular las coordenadas para el cuadrado.
 	 * 
@@ -46,7 +47,6 @@ public class Montecarlo {
 	private void calculateCoordenateSquare(Random random) {
 		xCoordSquare = random.nextDouble();
 		yCoordSquare = random.nextDouble();
-		
 		//System.out.println("Square " + xCoordSquare + " : " + yCoordSquare);
 	}
 
@@ -69,12 +69,5 @@ public class Montecarlo {
 	private void isInsideTheSquared() {
 		insideSquare += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 1;
 		//System.out.println(insideSquare);
-
 	}
-	
-	
-	
-	
-	
-
 }
