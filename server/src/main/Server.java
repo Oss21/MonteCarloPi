@@ -1,8 +1,8 @@
 package main;
 
-//import org.osoa.sca.annotations.Service;
+import org.osoa.sca.annotations.Service;
 
-//@Service
+@Service
 public interface Server{
 
     /**
