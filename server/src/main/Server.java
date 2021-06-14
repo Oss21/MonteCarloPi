@@ -1,8 +1,8 @@
 package main;
 
-import org.osoa.sca.annotations.Service;
+//import org.osoa.sca.annotations.Service;
 
-@Service
+//@Service
 public interface Server{
 
     /**
@@ -10,5 +10,5 @@ public interface Server{
      * @param cantNumeros cantidad de puntos a calcular
      * @return un string separado por comas con el resultado
      */
-    String darNumeros(int cantNumeros);
+    String pedirPuntos(int cantNumeros);
 }

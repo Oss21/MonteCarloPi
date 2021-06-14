@@ -3,8 +3,10 @@ package main;
 public class ServerImp implements Server{
 
     @Override
-    public String darNumeros(int cantNumeros){
+    public String pedirPuntos(int cantNumeros){
+        String total = "";
 
+        return total;
     }
 
 }
