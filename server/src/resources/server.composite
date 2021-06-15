@@ -3,16 +3,31 @@
 <composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
   xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1"
   targetNamespace="http://frascati.ow2.org/piServer"
-  name="Server">
+  name="server">
 
-  <component name="s">
+	<component name="s">
+		<implementation.java class="main.ServerImp" />
+		<service name="r">
+			<interface.java interface="java.lang.Runnable" />
+		</service>
+		<service name="serviceServer">
+			<interface.java interface="services.ServiceServer" />
+		</service>
 
- <implementation.java class="main.ServerImp" />
+		<reference name="serviceBroker">
+		<interface.java interface="services.ServiceBroker"></interface.java>
+		</reference>
 
-
-
-  </component>
-
-
+	</component>
+	
+	<service name="serviceServer" promote="s/serviceServer">
+		<interface.java interface="services.ServiceServer"></interface.java>
+		<frascati:binding.rmi host="localhost" serviceName="server1" port="1090" />
+	</service>
+	
+	<reference name="serviceBroker" promote="s/serviceBroker">
+		<frascati:binding.rmi host="localhost(PONER RUTA DONDE ESTARA MONTADO)"
+			serviceName="broker" port="1098" />
+	</reference>
 
 </composite>

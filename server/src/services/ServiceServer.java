@@ -1,14 +1,14 @@
-package main;
+package services;
 
 import org.osoa.sca.annotations.Service;
 
 @Service
-public interface Server{
+public interface ServiceServer{
 
     /**
      * calcular y retornar la cantidad de puntos en el cuadrado y la cantidad de puntos dentro del circulo
      * @param cantNumeros cantidad de puntos a calcular
      * @return un string separado por comas con el resultado
      */
-    String pedirPuntos(int cantNumeros);
+    String pedirPuntos(int semilla, double cantNumeros);
 }

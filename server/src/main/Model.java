@@ -11,7 +11,7 @@ public class Model{
     private double insideCircle;
     private double insideSquare;
 
-    public Model (){
+    public Model(){
 
     }
 

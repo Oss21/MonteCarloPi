@@ -1,11 +1,14 @@
 package main;
 
-public class ServerImp implements Server{
+import services.ServiceServer;
 
-    @Override
-    public String pedirPuntos(int cantNumeros){
-        String total = "";
-        
-        return total;
-    }
+public class ServerImp implements ServiceServer{
+
+	@Override
+	public String pedirPuntos(int semilla, double cantNumeros) {
+		return null;
+	}
+
+    
+
 }
