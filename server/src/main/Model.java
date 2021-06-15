@@ -4,9 +4,13 @@ import java.util.Random;
 
 public class Model {
 
-	private double xCoordSquare;
-	private double yCoordSquare;
 	private double insideCircle;
+	public double getInsideCircle() {
+		return insideCircle;
+	}
+
+	
+
 	private double insideSquare;
 
 	public void calculateMethodMontecarlo(int seed, long size) {
@@ -14,12 +18,10 @@ public class Model {
 		double pi = 0;
 		for (int i = 0; i < size; i++) {
 			calculateCoordenateSquare(random);
-			calculateCoordenateCircle();
-			isInsideTheCircle();
-			isInsideTheSquared();
 		}
 		pi = 4*(insideCircle/insideSquare);
-		System.out.println("pi: "+pi);
+		System.out.println(insideCircle);
+		System.out.println(pi);
 	}
 
 	public void calculateMethodMontecarloTrhead(int seed,double start ,double end) {
@@ -27,9 +29,6 @@ public class Model {
 		double pi = 0;
 		for (double i = start; i <= end; i++) {
 			calculateCoordenateSquare(random);
-			calculateCoordenateCircle();
-			isInsideTheCircle();
-			isInsideTheSquared();
 			//System.out.println(i+" "+"pi: "+pi);
 		}
 		pi = 4*(insideCircle/insideSquare);
@@ -43,29 +42,29 @@ public class Model {
 	 * @param random
 	 */
 	private void calculateCoordenateSquare(Random random) {
-		xCoordSquare = random.nextDouble();
-		yCoordSquare = random.nextDouble();
+		double xCoordSquare = random.nextDouble();
+		double yCoordSquare = random.nextDouble();
+		
+		insideCircle += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 0;
+		insideSquare += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 1;
+
+		insideCircle += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 0;
+		insideSquare += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 1;
+
 		//System.out.println("Square " + xCoordSquare + " : " + yCoordSquare);
 	}
-
-	/**
-	 * Este metodo permite calcular las coordenadas para el circulo.
-	 * 
-	 */
-	private void calculateCoordenateCircle() {
-		double result = Math.pow(xCoordSquare, 2) + Math.pow(yCoordSquare, 2);
-		double xCoordCircle = (result) <= 1? xCoordSquare : 0;
-		double yCoordCircle = (result) <= 1? yCoordSquare : 0;		
-	    //System.out.println("Circle " + xCoordSquare + " : " + yCoordSquare);
+	
+	public void setInsideCircle(double insideCircle) {
+		this.insideCircle = insideCircle;
 	}
 
-	private void isInsideTheCircle() {
-		insideCircle += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 0;
-		//System.out.println(insideCircle);
+	public double getInsideSquare() {
+		return insideSquare;
 	}
 
-	private void isInsideTheSquared() {
-		insideSquare += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 1;
-		//System.out.println(insideSquare);
+	public void setInsideSquare(double insideSquare) {
+		this.insideSquare = insideSquare;
 	}
+	
+	
 }

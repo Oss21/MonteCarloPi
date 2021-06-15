@@ -4,5 +4,6 @@ import org.osoa.sca.annotations.Service;
 
 @Service
 public interface ServiceBroker {
-	String darPuntos(double puntosCirculo, double puntosCuadrado);
+	void darRutaServer(String ruta);
+	double[] darPuntos(int semilla, double cantidad);
 }

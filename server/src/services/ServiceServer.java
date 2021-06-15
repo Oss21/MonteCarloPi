@@ -10,5 +10,5 @@ public interface ServiceServer{
      * @param cantNumeros cantidad de puntos a calcular
      * @return un string separado por comas con el resultado
      */
-    String pedirPuntos(int semilla, double cantNumeros);
+	double[] pedirPuntos(int semilla, double cantNumeros);
 }

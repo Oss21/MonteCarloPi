@@ -10,12 +10,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		int seed = 1;
-		double size = 1000.0;
+		double size = 10000000.0;
 		//double size = 1000000000000.0;
 		int numberPartition = 8;
 		double rangePartition = size / numberPartition;
 		long i = 1;
-
+		montecarlo = new Montecarlo();
+		/*
 		int count = 0;
 		ThreadData thread = null;
 		long TInicio, TFin, tiempo; // Variables para determinar el tiempo de ejecución
@@ -32,8 +33,8 @@ public class Main {
 		tiempo = TFin - TInicio;
 		System.out.println("Tiempo de ejecución en milisegundos: " + tiempo);
 		// thread.start();
-
-		// montecarlo.calculateMethodMontecarlo(100,100000000);
+		 */
+		montecarlo.calculateMethodMontecarlo(100,100000000);
 
 	}
 
