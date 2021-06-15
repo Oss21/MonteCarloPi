@@ -5,15 +5,9 @@ import java.util.Random;
 public class Model {
 
 	private double insideCircle;
-	public double getInsideCircle() {
-		return insideCircle;
-	}
-
-	
-
 	private double insideSquare;
 
-	public void calculateMethodMontecarlo(int seed, long size) {
+	public void calculateMethodMontecarlo(int seed, double size) {
 		Random random = new Random(seed);
 		double pi = 0;
 		for (int i = 0; i < size; i++) {
@@ -29,7 +23,6 @@ public class Model {
 		double pi = 0;
 		for (double i = start; i <= end; i++) {
 			calculateCoordenateSquare(random);
-			//System.out.println(i+" "+"pi: "+pi);
 		}
 		pi = 4*(insideCircle/insideSquare);
 		System.out.println("pi: "+pi);
@@ -50,21 +43,13 @@ public class Model {
 
 		insideCircle += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 0;
 		insideSquare += (Math.pow(xCoordSquare,2) + Math.pow(yCoordSquare,2)) <= 1 ? 1 : 1;
-
-		//System.out.println("Square " + xCoordSquare + " : " + yCoordSquare);
-	}
-	
-	public void setInsideCircle(double insideCircle) {
-		this.insideCircle = insideCircle;
 	}
 
 	public double getInsideSquare() {
 		return insideSquare;
 	}
-
-	public void setInsideSquare(double insideSquare) {
-		this.insideSquare = insideSquare;
+	public double getInsideCircle() {
+		return insideCircle;
 	}
-	
 	
 }

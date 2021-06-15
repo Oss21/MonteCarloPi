@@ -20,8 +20,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 * Numero de servidores corriendo en el sistema
 	 */
 	private ArrayList<ServiceServer> servers;
-	
-	
+
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
 
@@ -34,9 +33,6 @@ public class BrokerImp implements ServiceBroker, Runnable {
 		this.serviceServer = serviceServer;
 	}
 
-	
-	
-	
 	/**
 	 * Permite calcular el total de puntos generado por los diferentes servidores.
 	 * 
@@ -46,28 +42,28 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	@Override
 	public double[] darPuntos(int semilla, double cantidad) {
 
-		double numPuntos = cantidad;
-		double tamahnoDeNodo = numPuntos / servers.size();
+		double tamahnoDeNodo = cantidad / servers.size();
 
 		ArrayList<Thread> threads = new ArrayList<Thread>();
 		ExecutorService executor = Executors.newFixedThreadPool(servers.size());
 		for (final ServiceServer s : servers) {
 			Thread t = new Thread() {
-				public void run() {					
-					 double[] result = s.pedirPuntos(semilla, tamahnoDeNodo);
-					 puntosDentroCirculo += result[0];
-					 puntosDentroCuadrado += result[1];
+				public void run() {
+					double[] result = s.pedirPuntos(semilla, tamahnoDeNodo);
+					puntosDentroCirculo += result[0];
+					puntosDentroCuadrado += result[1];
 				}
-		
+
 			};
 			threads.add(t);
 			// Se le pasa los hilos que se desean ejecutar.
 			executor.execute(t);
 		}
 		executor.shutdown();
-		while (!executor.isTerminated());
-		
-		double[] output = {puntosDentroCirculo,puntosDentroCuadrado};
+		while (!executor.isTerminated())
+			;
+
+		double[] output = { puntosDentroCirculo, puntosDentroCuadrado };
 
 		return output;
 	}
