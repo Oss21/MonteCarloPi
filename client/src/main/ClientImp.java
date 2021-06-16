@@ -47,9 +47,8 @@ public class ClientImp implements Runnable, ServiceClient {
 
 				// double[] values = serviceBroker.darPuntos(12, 1000000000);
 				double[] values = serviceBroker.darPuntos(semilla, numPuntos);
-				calcularPi(values[0], values[1]);
-
-				// gui.setLabValPi(numPuntos*semilla);
+				double pi = calcularPi(values[0], values[1]);
+				gui.setLabValPi(pi);
 			}
 		});
 	}

@@ -88,6 +88,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 			ServiceServer s = (ServiceServer) Naming.lookup(ruta);
 			servers.add(s);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
