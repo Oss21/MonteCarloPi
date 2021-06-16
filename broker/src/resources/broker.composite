@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
-	xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1" targetNamespace="http://frascati.ow2.org/piClient" name="broker">
+	xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1" targetNamespace="http://frascati.ow2.org/piMontecarlo" name="Broker">
+
+	<service name="r" promote="b/r"/>
 
 	<component name="b">
 		<implementation.java class="main.BrokerImp" />
@@ -14,18 +16,13 @@
 			<interface.java interface="services.ServiceBroker"/>
 		</service>
 
-		<reference name="serviceServer">
-			<interface.java interface="services.serviceServer"></interface.java>
-		</reference>
 	</component>
 
 	<service name="serviceBroker" promote="b/serviceBroker">
-		<interface.java interface="services.serviceBroker"></interface.java>
+		<interface.java interface="services.ServiceBroker"></interface.java>
 		<frascati:binding.rmi host="localhost" serviceName="serviceBroker" port="3440"/>
 	</service>
 
-	<reference name="serviceServer" promote="b/serviceServer">
-		<frascati:binding.rmi host="localhost" serviceName="serviceServer" port="3441"/>
-	</reference>
+	
 
 </composite>

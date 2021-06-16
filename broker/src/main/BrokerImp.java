@@ -23,9 +23,9 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	/*
 	 * Numero de servidores corriendo en el sistema
 	 */
-	@Reference
-	private ArrayList<ServiceServer> servers;
-	private final static double TAMAHNO_BLOQUE = 1.000000000; 
+	//@Reference
+	private static ArrayList<ServiceServer> servers = new ArrayList();
+	private final static double TAMAHNO_BLOQUE = 1000000000; 
 	
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
@@ -42,20 +42,26 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	@Override
 	public double[] darPuntos(long semilla, double cantidad) {
 
-		int bloques = (int) (cantidad / TAMAHNO_BLOQUE);// 20
-		// bloques = 100/100 = hilos 1 bloques
-
+		// bloques = 10100/10000 = hilos 1 bloques
+		// nPoints = tb > cantidad ? cantidad: tb;
+		// cantidad -= nPoints; 
 		Random seed = new Random(semilla);
-		int rep = bloques / servers.size();
-		do {
+
+		while(cantidad>0) {
 			ArrayList<ThreadData> threads = new ArrayList<ThreadData>();
 			// Start
 			ExecutorService executor = Executors.newFixedThreadPool(servers.size());
 			for (final ServiceServer s : servers) {
-				threadData = new ThreadData(seed.nextLong(), TAMAHNO_BLOQUE);
-				threads.add(threadData);
-				// Se le pasa los hilos que se desean ejecutar.
-				executor.execute(threadData);
+				if(cantidad>0){
+					double nPoints= TAMAHNO_BLOQUE> cantidad ? cantidad:TAMAHNO_BLOQUE;
+					threadData = new ThreadData(s,seed.nextLong(), nPoints);
+					threads.add(threadData);
+					// Se le pasa los hilos que se desean ejecutar.
+					executor.execute(threadData);
+					cantidad-=nPoints;
+				}else{
+					break;
+				}
 			}
 			executor.shutdown();
 			while (!executor.isTerminated());
@@ -65,7 +71,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 				puntosDentroCuadrado += t.getPuntosDentroCuadrado();
 			}
 			// finish
-		} while (rep-- > 0);
+		}
 
 		double[] output = { puntosDentroCirculo, puntosDentroCuadrado };
 
