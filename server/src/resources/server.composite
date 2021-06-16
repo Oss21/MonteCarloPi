@@ -23,11 +23,11 @@
 
 	<service name="serviceServer" promote="s/serviceServer">
 		<interface.java interface="services.ServiceServer"></interface.java>
-		<frascati:binding.rmi host="localhost" serviceName="server" port="3441" />
+		<frascati:binding.rmi host="localhost" serviceName="serviceServer" port="3441" />
 	</service>
 
 	<reference name="serviceBroker" promote="s/serviceBroker">
-		<frascati:binding.rmi host="localhost" serviceName="broker" port="3440" />
+		<frascati:binding.rmi host="localhost" serviceName="serviceBroker" port="3440" />
 	</reference>
 
 </composite>

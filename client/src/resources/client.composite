@@ -17,7 +17,7 @@
 
 	</component>
 
-	<reference name="serviceBroker" promote="s/serviceBroker">
-		<frascati:binding.rmi host="localhost" serviceName="broker" port="3440" />
+	<reference name="serviceBroker" promote="c/serviceBroker">
+		<frascati:binding.rmi host="localhost" serviceName="serviceBroker" port="3440" />
 	</reference>
 </composite>

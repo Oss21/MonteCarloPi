@@ -7,5 +7,4 @@ public interface ServiceClient {
 
     double calcularPi(double puntosCirculo, double puntosCuadrado);
    
-	
 }

@@ -16,7 +16,7 @@ public class ClientImp implements Runnable, ServiceClient {
 	@Override
 	public void run() {
 		System.out.println("El cliente esta corriendo");
-		double[] values = serviceBroker.darPuntos(10, 1000000);
+		double[] values = serviceBroker.darPuntos(12, 10000000000);
 		calcularPi(values[0], values[1]);
 	}
 		

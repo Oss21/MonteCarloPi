@@ -17,10 +17,10 @@ public class ServerImp implements ServiceServer, Runnable {
 
 	private Model model;
 
-	
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
 	}
+	
 	@Init
 	public void initilized() {
 		model = new Model();
