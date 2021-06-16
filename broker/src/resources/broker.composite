@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
-  xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1"
-  targetNamespace="http://frascati.ow2.org/piClient"
-  name="broker">
+	xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1" targetNamespace="http://frascati.ow2.org/piClient" name="broker">
 
- <component name="b">
+	<component name="b">
 		<implementation.java class="main.BrokerImp" />
-			
+
 		<service name="r">
 			<interface.java interface="java.lang.Runnable" />
 		</service>
 
 		<service name="serviceBroker">
-			<interface.java interface="services.ServiceBroker" />
+			<interface.java interface="services.ServiceBroker"/>
 		</service>
 
-	  <reference name="serviceServer">
-		<interface.java interface="services.serviceServer"></interface.java>
+		<reference name="serviceServer">
+			<interface.java interface="services.serviceServer"></interface.java>
 		</reference>
 	</component>
-	
+
 	<service name="serviceBroker" promote="b/serviceBroker">
 		<interface.java interface="services.serviceBroker"></interface.java>
-		<frascati:binding.rmi host="localhost" serviceName="serviceBroker" port="1090" />
+		<frascati:binding.rmi host="localhost" serviceName="serviceBroker" port="3440"/>
 	</service>
-	
+
 	<reference name="serviceServer" promote="b/serviceServer">
-		<frascati:binding.rmi host="localhost(PONER RUTA DONDE ESTARA MONTADO El servidor)"
-			serviceName="serviceServer" port="1098" />
+		<frascati:binding.rmi host="localhost" serviceName="serviceServer" port="3441"/>
 	</reference>
 
 </composite>
