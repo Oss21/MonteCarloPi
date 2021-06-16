@@ -42,6 +42,8 @@ public class BrokerImp implements ServiceBroker, Runnable {
 		// bloques = 10100/10000 = hilos 1 bloques
 		// nPoints = tb > cantidad ? cantidad: tb;
 		// cantidad -= nPoints;
+		int hilos = 0;
+		
 		Random seed = new Random(semilla);
 
 		System.out.println("Cantidad_de_Servidores-------------"+servers.size());
@@ -68,10 +70,11 @@ public class BrokerImp implements ServiceBroker, Runnable {
 				puntosDentroCirculo += t.getPuntosDentroCirculo();
 				puntosDentroCuadrado += t.getPuntosDentroCuadrado();
 			}
-			// finish
+			// finish			
+			hilos = threads.size();
 		}
 
-		double[] output = { puntosDentroCirculo, puntosDentroCuadrado };
+		double[] output = { puntosDentroCirculo, puntosDentroCuadrado, hilos};
 
 		return output;
 	}
