@@ -2,12 +2,9 @@ package main;
 
 import java.rmi.Naming;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.osoa.sca.annotations.Reference;
-
 import Thread.ThreadData;
 import services.ServiceBroker;
 import services.ServiceServer;
@@ -24,8 +21,8 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 * Numero de servidores corriendo en el sistema
 	 */
 	//@Reference
-	private static ArrayList<ServiceServer> servers = new ArrayList();
-	private final static double TAMAHNO_BLOQUE = 1000000000; 
+	private static ArrayList<ServiceServer> servers = new ArrayList<ServiceServer>();
+	private final static double TAMAHNO_BLOQUE = 100000000; 
 	
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
@@ -35,7 +32,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 
 	/**
 	 * Permite calcular el total de puntos generado por los diferentes servidores.
-	 * 
+	 *  
 	 * @return retorna el número de puntos en el circulo y el número de puntos fuera
 	 *         del el.
 	 */
@@ -47,6 +44,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 		// cantidad -= nPoints; 
 		Random seed = new Random(semilla);
 
+		System.out.println("ERROR-------------"+servers.size());
 		while(cantidad>0) {
 			ArrayList<ThreadData> threads = new ArrayList<ThreadData>();
 			// Start
@@ -90,7 +88,6 @@ public class BrokerImp implements ServiceBroker, Runnable {
 			ServiceServer s = (ServiceServer) Naming.lookup(ruta);
 			servers.add(s);
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

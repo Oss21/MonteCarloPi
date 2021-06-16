@@ -7,7 +7,7 @@ public class Model {
 	private double insideCircle;
 	private double insideSquare;
 
-	public void calculateMethodMontecarlo(int seed, double size) {
+	public void calculateMethodMontecarlo(long seed, double size) {
 		Random random = new Random(seed);
 		double pi = 0;
 		for (int i = 0; i < size; i++) {

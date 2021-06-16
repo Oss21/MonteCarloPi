@@ -39,7 +39,7 @@ public class ServerImp implements ServiceServer, Runnable {
 	}
 
 	@Override
-	public double[] pedirPuntos(int semilla, double cantNumeros) {
+	public double[] pedirPuntos(long semilla, double cantNumeros) {
 		model.calculateMethodMontecarlo(semilla, cantNumeros);
 		double[] output = {model.getInsideCircle(),model.getInsideSquare()};
 		return output;

@@ -1,6 +1,5 @@
 package Thread;
 
-import services.ServiceBroker;
 import services.ServiceServer;
 
 public class ThreadData extends Thread {
@@ -21,7 +20,7 @@ public class ThreadData extends Thread {
 	}
 
 	public void run() {
-		double[] values = server.darPuntos(seed, blocksize);
+		double[] values = server.pedirPuntos(seed, blocksize);
 		puntosDentroCirculo = values[0];
 		puntosDentroCuadrado = values[1];
 		System.out.println("Termina thread ");

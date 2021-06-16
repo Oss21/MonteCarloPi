@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
-	xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1" targetNamespace="http://frascati.ow2.org/piMontecarlo" name="Client">
+	xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1" targetNamespace="http://frascati.ow2.org/piMontecarlo" name="client">
 
 	<service name="r" promote="c/r"/>
 
