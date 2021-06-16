@@ -85,6 +85,9 @@ public class ClientImp implements Runnable, ServiceClient {
 		gui.getButCargarPrueba().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//desabilito el boton que permite agregar solicitudes individuales
+				gui.getButCalcPi().setEnabled(false);
+				
 				int	rep = 10; //cantidad de veces que se va a realizar cada configuracion
 				cargarDatos(); 
 				int k = datos.size(); // num de configuraciones
@@ -99,7 +102,7 @@ public class ClientImp implements Runnable, ServiceClient {
 					for (int i = 0; i < k; i++) {
 						String[] configuracion = datos.get(i);
 						
-						bw.write("Semilla: " + configuracion[0] + ", Cantidad de puntos: " + configuracion[1]);
+						bw.write("Semilla: " + configuracion[0] + ", Cantidad de puntos: " + configuracion[1] + "\n");
 						
 						for (int j = 0; j < rep; j++) {
 							
@@ -112,17 +115,17 @@ public class ClientImp implements Runnable, ServiceClient {
 							
 							demoraTotal += 0; //timestamp
 							
-							bw.write("pi = " + pi + ", Demoro: ");
+							bw.write("pi = " + pi + ", Demoro: " + "\n");
 						}							
-						bw.write("El promedio para esta configuración fue: " + (demoraTotal/rep));
-						demoraTotal =0;
+						bw.write("El promedio para esta configuración fue: " + (demoraTotal/rep) + "\n");
+						demoraTotal = 0;
 					}
 					
 					bw.close();
 				} catch (Exception exc) {
 					
 				}
-					
+				gui.getButCalcPi().setEnabled(true);	
 			}
 		});
 	}
