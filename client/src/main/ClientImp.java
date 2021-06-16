@@ -120,7 +120,7 @@ public class ClientImp implements Runnable, ServiceClient {
 							
 							bw.write("pi = " + pi + ", Demoro: " + demora + "\n");
 						}							
-						bw.write("El promedio para esta configuración fue: " + (demoraTotal/rep) + "\n" );
+						bw.write("El promedio para esta configuracion fue: " + (demoraTotal/rep) + "\n" );
 						bw.write( "\n");
 						demoraTotal = 0;
 					}
