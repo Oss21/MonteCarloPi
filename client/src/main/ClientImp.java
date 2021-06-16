@@ -56,7 +56,7 @@ public class ClientImp implements Runnable, ServiceClient {
 		String line = "";
 		
 		try {
-			FileReader reader = new FileReader(ruta + "test_easy.txt"); //cambiar por test
+			FileReader reader = new FileReader(ruta + "test.txt"); //cambiar por test
 			BufferedReader br = new BufferedReader(reader);
 			
 			while((line = br.readLine()) != null){
@@ -74,8 +74,6 @@ public class ClientImp implements Runnable, ServiceClient {
 			public void actionPerformed(ActionEvent e) {
 				long semilla = gui.getSemilla();
 				final double numPuntos = gui.getNumPuntos();
-
-				// double[] values = serviceBroker.darPuntos(12, 1000000000);
 				double[] values = serviceBroker.darPuntos(semilla, numPuntos);
 				double pi = calcularPi(values[0], values[1]);
 				gui.setLabValPi(pi);
