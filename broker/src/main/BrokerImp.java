@@ -22,17 +22,17 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 */
 	//@Reference
 	private static ArrayList<ServiceServer> servers = new ArrayList<ServiceServer>();
-	private final static double TAMAHNO_BLOQUE = 100000000; 
-	
+	private final static double TAMAHNO_BLOQUE = 100000000;
+
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
-	
-	
+
+
 	private ThreadData threadData;
 
 	/**
 	 * Permite calcular el total de puntos generado por los diferentes servidores.
-	 *  
+	 *
 	 * @return retorna el número de puntos en el circulo y el número de puntos fuera
 	 *         del el.
 	 */
@@ -41,10 +41,10 @@ public class BrokerImp implements ServiceBroker, Runnable {
 
 		// bloques = 10100/10000 = hilos 1 bloques
 		// nPoints = tb > cantidad ? cantidad: tb;
-		// cantidad -= nPoints; 
+		// cantidad -= nPoints;
 		Random seed = new Random(semilla);
 
-		System.out.println("ERROR-------------"+servers.size());
+		System.out.println("Cantidad_de_Servidores-------------"+servers.size());
 		while(cantidad>0) {
 			ArrayList<ThreadData> threads = new ArrayList<ThreadData>();
 			// Start
@@ -79,7 +79,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	/***
 	 * Este metodo permite obtener la ruta en donde se encuentra alojado el
 	 * servidor. De esta manera, poder enviarle las peticiones pertinentes
-	 * 
+	 *
 	 * @param ruta: Representa la ruta en donde se encuentra alojado el servidor
 	 */
 	@Override

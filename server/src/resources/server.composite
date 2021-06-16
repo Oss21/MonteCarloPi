@@ -8,9 +8,11 @@
 	<component name="s">
 		<property name="ruta">rmi://localhost:3441/serviceServer</property>
 		<implementation.java class="main.ServerImp" />
+
 		<service name="r">
 			<interface.java interface="java.lang.Runnable" />
 		</service>
+
 		<service name="serviceServer">
 			<interface.java interface="services.ServiceServer" />
 		</service>
