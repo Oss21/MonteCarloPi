@@ -103,21 +103,25 @@ public class ClientImp implements Runnable, ServiceClient {
 						String[] configuracion = datos.get(i);
 						
 						bw.write("Semilla: " + configuracion[0] + ", Cantidad de puntos: " + configuracion[1] + "\n");
+						bw.write( "\n");
 						
 						for (int j = 0; j < rep; j++) {
 							
-							//timestamp
+							long timeStart = System.currentTimeMillis();
 							
 							double[] values = serviceBroker.darPuntos(Long.parseLong(configuracion[0]), Double.parseDouble(configuracion[1]));
 							double pi = calcularPi(values[0], values[1]);
 							
-							//fin time stamp
+							long timeEnd = System.currentTimeMillis();
 							
-							demoraTotal += 0; //timestamp
+							long demora = timeEnd - timeStart;
 							
-							bw.write("pi = " + pi + ", Demoro: " + "\n");
+							demoraTotal += demora;
+							
+							bw.write("pi = " + pi + ", Demoro: " + demora + "\n");
 						}							
-						bw.write("El promedio para esta configuración fue: " + (demoraTotal/rep) + "\n");
+						bw.write("El promedio para esta configuración fue: " + (demoraTotal/rep) + "\n" );
+						bw.write( "\n");
 						demoraTotal = 0;
 					}
 					
