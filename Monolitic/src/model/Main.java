@@ -16,7 +16,7 @@ public class Main {
 		double rangePartition = size / numberPartition;
 		long i = 1;
 		montecarlo = new Montecarlo();
-		/*
+		
 		int count = 0;
 		ThreadData thread = null;
 		long TInicio, TFin, tiempo; // Variables para determinar el tiempo de ejecución
@@ -33,7 +33,7 @@ public class Main {
 		tiempo = TFin - TInicio;
 		System.out.println("Tiempo de ejecución en milisegundos: " + tiempo);
 		// thread.start();
-		 */
+	
 		montecarlo.calculateMethodMontecarlo(100,100000000);
 
 	}

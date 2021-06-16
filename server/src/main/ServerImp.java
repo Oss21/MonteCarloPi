@@ -35,7 +35,7 @@ public class ServerImp implements ServiceServer, Runnable {
 	@Override
 	public void run() {
 		System.out.println("Servidor esta corriendo");
-		serviceBroker.darRutaServer(ruta);		
+		serviceBroker.attach(ruta);	
 	}
 
 	@Override
