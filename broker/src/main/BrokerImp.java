@@ -20,21 +20,19 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	/*
 	 * Numero de servidores corriendo en el sistema
 	 */
-	//@Reference
+	// @Reference
 	private static ArrayList<ServiceServer> servers = new ArrayList<ServiceServer>();
-	private final static double TAMAHNO_BLOQUE = 100000000;
+	private final static double TAMAHNO_BLOQUE = 10000000;
 
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
-
-
 	private ThreadData threadData;
 
 	/**
 	 * Permite calcular el total de puntos generado por los diferentes servidores.
 	 *
-	 * @return retorna el número de puntos en el circulo y el número de puntos fuera
-	 *         del el.
+	 * @return retorna el número de puntos en el circulo y el número de puntos
+	 *         fuera del el.
 	 */
 	@Override
 	public double[] darPuntos(long semilla, double cantidad) {
@@ -43,41 +41,52 @@ public class BrokerImp implements ServiceBroker, Runnable {
 		// nPoints = tb > cantidad ? cantidad: tb;
 		// cantidad -= nPoints;
 		int hilos = 0;
-		
 		Random seed = new Random(semilla);
 
-		System.out.println("Cantidad_de_Servidores-------------"+servers.size());
-		while(cantidad>0) {
+		while (cantidad > 0) {
 			ArrayList<ThreadData> threads = new ArrayList<ThreadData>();
+
 			// Start
 			ExecutorService executor = Executors.newFixedThreadPool(servers.size());
 			for (final ServiceServer s : servers) {
-				if(cantidad>0){
-					double nPoints= TAMAHNO_BLOQUE> cantidad ? cantidad:TAMAHNO_BLOQUE;
-					threadData = new ThreadData(s,seed.nextLong(), nPoints);
-					threads.add(threadData);
+				if (cantidad > 0) {
+					double nPoints = TAMAHNO_BLOQUE > cantidad ? cantidad : TAMAHNO_BLOQUE;
+					// crearNSubProcesos(s, seed, tamahnoProcesos, TAMAHNO_BLOQUE, threads);
+					crearNSubProcesos(s, seed, TAMAHNO_BLOQUE, threads);
 					// Se le pasa los hilos que se desean ejecutar.
 					executor.execute(threadData);
-					cantidad-=nPoints;
-				}else{
+					cantidad -= nPoints;
+				} else {
 					break;
 				}
 			}
 			executor.shutdown();
-			while (!executor.isTerminated());
-
+			while (!executor.isTerminated())
+				;
+			long tiempoEjecucionTotal = 0;
 			for (ThreadData t : threads) {
 				puntosDentroCirculo += t.getPuntosDentroCirculo();
 				puntosDentroCuadrado += t.getPuntosDentroCuadrado();
+				tiempoEjecucionTotal += t.getTiempoEjecucion();
 			}
-			// finish			
+			// finish
 			hilos = threads.size();
+			System.out.println("Time de ejecuci�n total " + tiempoEjecucionTotal + " de " + servers.size()+" " +threads.size());
 		}
 
-		double[] output = { puntosDentroCirculo, puntosDentroCuadrado, hilos};
-
+		double[] output = { puntosDentroCirculo, puntosDentroCuadrado, hilos };
+		System.out.println("");
 		return output;
 	}
+
+	private void crearNSubProcesos(ServiceServer server, Random seed, double blocksize, ArrayList<ThreadData> threads) {
+		double tamahnoProcesos = TAMAHNO_BLOQUE / 4;
+		for (int i = 0; i < 4; i++) {
+			threadData = new ThreadData(server, seed.nextLong(), tamahnoProcesos);
+			threads.add(threadData);
+		}
+	}
+
 
 	/***
 	 * Este metodo permite obtener la ruta en donde se encuentra alojado el
@@ -97,9 +106,22 @@ public class BrokerImp implements ServiceBroker, Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("#########################");
+		System.out.println("***************************");
 		System.out.println("Se ha levantado el broker");
-		System.out.println("#########################");
+		System.out.println("***************************");
+		System.out.println();
+		while (true) {
+			try {
+				Thread.sleep(5000);
+				System.out.println("***************************");
+				System.out.println("Cantidad_de_Servidores-------> " + servers.size());
+				System.out.println("***************************");
+				System.out.println("");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }

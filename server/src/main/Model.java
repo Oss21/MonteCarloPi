@@ -14,7 +14,6 @@ public class Model {
 			calculateCoordenateSquare(random);
 		}
 		pi = 4*(insideCircle/insideSquare);
-		System.out.println(insideCircle);
 		System.out.println(pi);
 	}
 

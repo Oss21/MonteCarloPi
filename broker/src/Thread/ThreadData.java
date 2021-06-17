@@ -8,9 +8,12 @@ public class ThreadData extends Thread {
 	private long seed;
 	private double blocksize;
 	private ServiceServer server;
+	private long tiempoEjecucion;
+	
 
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
+	
 
 	public ThreadData(ServiceServer server, long seed, double blocksize) {
 		super();
@@ -20,10 +23,11 @@ public class ThreadData extends Thread {
 	}
 
 	public void run() {
+		long tiempoInicio = System.currentTimeMillis();
 		double[] values = server.pedirPuntos(seed, blocksize);
 		puntosDentroCirculo = values[0];
 		puntosDentroCuadrado = values[1];
-		System.out.println("Termina thread ");
+		tiempoEjecucion = System.currentTimeMillis() - tiempoInicio;
 	}
 
 	public double getPuntosDentroCirculo() {
@@ -32,5 +36,9 @@ public class ThreadData extends Thread {
 
 	public double getPuntosDentroCuadrado() {
 		return puntosDentroCuadrado;
+	}
+	
+	public long getTiempoEjecucion() {
+		return tiempoEjecucion;
 	}
 }
