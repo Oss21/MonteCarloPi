@@ -22,7 +22,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 */
 	// @Reference
 	private static ArrayList<ServiceServer> servers = new ArrayList<ServiceServer>();
-	private final static double TAMAHNO_BLOQUE = 10000000;
+	private final static double TAMAHNO_BLOQUE = 100000000;
 
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
@@ -71,7 +71,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 			}
 			// finish
 			hilos = threads.size();
-			System.out.println("Time de ejecución total " + tiempoEjecucionTotal + " de " + servers.size()+" " +threads.size());
+			System.out.println("Time de ejecuciï¿½n total " + tiempoEjecucionTotal + " de " + servers.size()+" " +threads.size());
 		}
 
 		double[] output = { puntosDentroCirculo, puntosDentroCuadrado, hilos };
@@ -80,7 +80,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	}
 
 	private void crearNSubProcesos(ServiceServer server, Random seed, double blocksize, ArrayList<ThreadData> threads) {
-		double tamahnoProcesos = TAMAHNO_BLOQUE / 4;
+		double tamahnoProcesos = TAMAHNO_BLOQUE / 8;
 		for (int i = 0; i < 4; i++) {
 			threadData = new ThreadData(server, seed.nextLong(), tamahnoProcesos);
 			threads.add(threadData);
