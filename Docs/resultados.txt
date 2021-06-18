@@ -1,0 +1,41 @@
+Semilla: 1, Cantidad de puntos: 1000000
+
+pi = 3.142536, Demoro: 385, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 291, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 291, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 291, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 290, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 291, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 292, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 292, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 291, nodos de procesamiento: 4.0
+pi = 3.142536, Demoro: 291, nodos de procesamiento: 4.0
+El promedio para esta configuracion fue: 300
+
+Semilla: 2, Cantidad de puntos: 100000000
+
+pi = 3.14169088, Demoro: 962, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 1042, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 1049, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 990, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 1024, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 1026, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 1020, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 1023, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 1017, nodos de procesamiento: 8.0
+pi = 3.14169088, Demoro: 989, nodos de procesamiento: 8.0
+El promedio para esta configuracion fue: 1014
+
+Semilla: 3, Cantidad de puntos: 10000000000
+
+pi = 3.1416147888, Demoro: 79783, nodos de procesamiento: 16.0
+pi = 3.1416147888, Demoro: 81162, nodos de procesamiento: 16.0
+pi = 3.1416147888, Demoro: 82557, nodos de procesamiento: 16.0
+pi = 3.1416147888, Demoro: 78679, nodos de procesamiento: 4.0
+pi = 3.1416147888, Demoro: 63336, nodos de procesamiento: 20.0
+pi = 3.1416147888, Demoro: 66033, nodos de procesamiento: 20.0
+pi = 3.1416147888, Demoro: 70013, nodos de procesamiento: 20.0
+pi = 3.1416147888, Demoro: 65738, nodos de procesamiento: 20.0
+pi = 3.1416147888, Demoro: 66764, nodos de procesamiento: 20.0
+pi = 3.1416147888, Demoro: 64950, nodos de procesamiento: 20.0
+El promedio para esta configuracion fue: 71901
