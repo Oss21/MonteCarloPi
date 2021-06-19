@@ -1,6 +1,9 @@
 package main;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -22,15 +25,12 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 */
 	// @Reference
 	private static ArrayList<ServiceServer> servers = new ArrayList<ServiceServer>();
-	private final static double TAMAHNO_BLOQUE = 100000000;
+	private final static double TAMAHNO_BLOQUE = 10000000.0;
 
 	private double puntosDentroCirculo = 0.0;
 	private double puntosDentroCuadrado = 0.0;
 	private ThreadData threadData;
 
-	
-	
-	
 	/**
 	 * Permite calcular el total de puntos generado por los diferentes servidores.
 	 *
@@ -56,7 +56,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 					double nPoints = TAMAHNO_BLOQUE > cantidad ? cantidad : TAMAHNO_BLOQUE;
 					// crearNSubProcesos(s, seed, tamahnoProcesos, TAMAHNO_BLOQUE, threads);
 					subProcesos = aumentarNSubprocesos(cantidad);
-					crearSubProcesos(s, seed, TAMAHNO_BLOQUE, threads,subProcesos);
+					crearSubProcesos(s, seed, TAMAHNO_BLOQUE, threads, subProcesos);
 					// Se le pasa los hilos que se desean ejecutar.
 					executor.execute(threadData);
 					cantidad -= nPoints;
@@ -65,7 +65,8 @@ public class BrokerImp implements ServiceBroker, Runnable {
 				}
 			}
 			executor.shutdown();
-			while (!executor.isTerminated());
+			while (!executor.isTerminated())
+				;
 			long tiempoEjecucionTotal = 0;
 			for (ThreadData t : threads) {
 				puntosDentroCirculo += t.getPuntosDentroCirculo();
@@ -74,8 +75,19 @@ public class BrokerImp implements ServiceBroker, Runnable {
 			}
 			// finish
 			hilos = threads.size();
-			System.out.println("Time de ejecuci�n total " + tiempoEjecucionTotal + " de " + servers.size()+" "+subProcesos);
-			System.out.println("Total hilos procesando en todas las maquinas"+threads.size());
+			try {
+				Thread.sleep(50000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println("-----------------------------------------------");
+			System.out.println("Time de ejecucionn total " + tiempoEjecucionTotal + " # de nodos: " + servers.size()
+					+ " #SubProcesos: " + subProcesos);
+			System.out.println("-----------------------------------------------");
+			System.out.println();
+			System.out.println("-----------------------------------------------");
+			System.out.println("Total hilos procesando en todas las maquinas: " + threads.size());
+			System.out.println("-----------------------------------------------");
 		}
 
 		double[] output = { puntosDentroCirculo, puntosDentroCuadrado, hilos };
@@ -84,47 +96,53 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	}
 
 	/**
-	 * Este metodo permite crear subprocesos dentro de un nodo de procesamiento con el fin de reducir con el tiempo en
-	 * que tarda un sistema en responder a los eventos. Ademas, cumple con el atributo de calidad 
-	 * ya que a medida que aumenta el número de datos a procesar el programa puede adaptarse y responder sin perder el rendimiento
-	 * @param server servidores disponibles para enviar tareas de procesamiento.
-	 * @param seed semilla para crear randoms con la mismas secuencias.
-	 * @param blocksize tamaño de datos a procesar, los cuales seran divididos en pequeñas cantidades para agilizar el procesamiento.
-	 * @param threads hilos que posteriormente se van a ejecutar como subprocesos.
+	 * Este metodo permite crear subprocesos dentro de un nodo de procesamiento con
+	 * el fin de reducir con el tiempo en que tarda un sistema en responder a los
+	 * eventos. Ademas, cumple con el atributo de calidad ya que a medida que
+	 * aumenta el número de datos a procesar el programa puede adaptarse y
+	 * responder sin perder el rendimiento
+	 * 
+	 * @param server      servidores disponibles para enviar tareas de
+	 *                    procesamiento.
+	 * @param seed        semilla para crear randoms con la mismas secuencias.
+	 * @param blocksize   tamaño de datos a procesar, los cuales seran divididos en
+	 *                    pequeñas cantidades para agilizar el procesamiento.
+	 * @param threads     hilos que posteriormente se van a ejecutar como
+	 *                    subprocesos.
 	 * @param subProcesos cantidad de subprocesos a generar
 	 */
-	private void crearSubProcesos(ServiceServer server, Random seed, double blocksize, ArrayList<ThreadData> threads, int subProcesos) {
-		double tamahnoProcesos = TAMAHNO_BLOQUE / 8;
+	private void crearSubProcesos(ServiceServer server, Random seed, double blocksize, ArrayList<ThreadData> threads,
+			int subProcesos) {
+		double tamahnoProcesos = TAMAHNO_BLOQUE / subProcesos;
 		for (int i = 0; i < subProcesos; i++) {
 			threadData = new ThreadData(server, seed.nextLong(), tamahnoProcesos);
 			threads.add(threadData);
 		}
 	}
-	
-	
+
 	/***
-	 * Este metodo nos permite aumentar la cantidad sub-nodos de procesamiento que contiene un nodo, conforme a la cantidad de carga que 
-	 * se le transfiera y disminuir cuando no lo requiera.
-	 * calculo amerite. 
+	 * Este metodo nos permite aumentar la cantidad sub-nodos de procesamiento que
+	 * contiene un nodo, conforme a la cantidad de carga que se le transfiera y
+	 * disminuir cuando no lo requiera. calculo amerite.
+	 * 
 	 * @param cantidad Numero de datos a procesar
 	 * @return cantidad sub-nodos o subprocesos a ejecutar.
 	 */
 	private int aumentarNSubprocesos(double cantidad) {
-		int numeroSubProcesos = 0;		
-		if(cantidad < 10000000) {
+		int numeroSubProcesos = 0;
+		if (cantidad < 10000000) {
 			numeroSubProcesos = 1;
-		}else if(cantidad < 100000000) {
+		} else if (cantidad < 100000000) {
 			numeroSubProcesos = 4;
-		}else if(cantidad < 10000000000.0) {
+		} else if (cantidad < 10000000000.0) {
 			numeroSubProcesos = 8;
-		}else if(cantidad < 1000000000000.0) {
+		} else if (cantidad < 1000000000000.0) {
 			numeroSubProcesos = 12;
-		}else {
+		} else {
 			numeroSubProcesos = 16;
 		}
 		return numeroSubProcesos;
 	}
-
 
 	/***
 	 * Este metodo permite obtener la ruta en donde se encuentra alojado el
@@ -134,11 +152,23 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 */
 	@Override
 	public void attach(String ruta) {
+		ServiceServer s = null;
 		try {
-			ServiceServer s = (ServiceServer) Naming.lookup(ruta);
+			s = (ServiceServer) Naming.lookup(ruta);
 			servers.add(s);
 		} catch (Exception e) {
-			e.printStackTrace();
+			try {
+				Naming.unbind(ruta);
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			} catch (NotBoundException e1) {
+				e1.printStackTrace();
+			}
+			servers.remove(s);
+			System.out.println("Se ha caido el nodo: " + s);
+			System.out.println("Se ha caido uno de los nodos, pero tranquilo. Pronto, sera reasignado");
 		}
 	}
 
