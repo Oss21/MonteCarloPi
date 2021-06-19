@@ -86,7 +86,7 @@ public class ClientImp implements Runnable, ServiceClient {
 				//desabilito el boton que permite agregar solicitudes individuales
 				gui.getButCalcPi().setEnabled(false);
 				
-				int	rep = 10; //cantidad de veces que se va a realizar cada configuracion
+				int	rep = 1; //cantidad de veces que se va a realizar cada configuracion
 				cargarDatos(); 
 				int k = datos.size(); // num de configuraciones
 				

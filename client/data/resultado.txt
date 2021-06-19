@@ -1,0 +1,46 @@
+Semilla: 1, Cantidad de puntos: 1000000
+
+pi = 3.142536, Demoro: 194, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 171, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 235, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 234, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 236, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 196, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 171, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 177, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 134, nodos de procesamiento: 1.0
+pi = 3.142536, Demoro: 279, nodos de procesamiento: 1.0
+El promedio para esta configuracion fue: 202
+
+Semilla: 2, Cantidad de puntos: 1000000
+
+pi = 3.14128, Demoro: 277, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 174, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 295, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 261, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 150, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 119, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 206, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 159, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 214, nodos de procesamiento: 1.0
+pi = 3.14128, Demoro: 202, nodos de procesamiento: 1.0
+El promedio para esta configuracion fue: 205
+
+Semilla: 3, Cantidad de puntos: 1000000
+
+pi = 3.139872, Demoro: 216, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 156, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 159, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 273, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 170, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 173, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 156, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 222, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 241, nodos de procesamiento: 1.0
+pi = 3.139872, Demoro: 183, nodos de procesamiento: 1.0
+El promedio para esta configuracion fue: 194
+
+semilla: 10, Cantidad de puntos: 1000000000000
+
+pi = 3.141591246982584, Demoro: 2001644, nodos de procesamiento: 40.0
+pi = 3.141591246982584, Demoro: 2001301, nodos de procesamiento: 40.0
