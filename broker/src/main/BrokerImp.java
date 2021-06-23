@@ -58,7 +58,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 					subProcesos = aumentarNSubprocesos(cantidad);
 					crearSubProcesos(s, seed, TAMAHNO_BLOQUE, threads, subProcesos);
 					// Se le pasa los hilos que se desean ejecutar.
-					executor.execute(threadData);
+					//executor.execute(threadData);
 					cantidad -= nPoints;
 				} else {
 					break;
@@ -101,7 +101,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 * eventos. Ademas, cumple con el atributo de calidad ya que a medida que
 	 * aumenta el número de datos a procesar el programa puede adaptarse y
 	 * responder sin perder el rendimiento
-	 * 
+	 *
 	 * @param server      servidores disponibles para enviar tareas de
 	 *                    procesamiento.
 	 * @param seed        semilla para crear randoms con la mismas secuencias.
@@ -117,6 +117,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 		for (int i = 0; i < subProcesos; i++) {
 			threadData = new ThreadData(server, seed.nextLong(), tamahnoProcesos);
 			threads.add(threadData);
+			executor.execute(threadData);
 		}
 	}
 
@@ -124,7 +125,7 @@ public class BrokerImp implements ServiceBroker, Runnable {
 	 * Este metodo nos permite aumentar la cantidad sub-nodos de procesamiento que
 	 * contiene un nodo, conforme a la cantidad de carga que se le transfiera y
 	 * disminuir cuando no lo requiera. calculo amerite.
-	 * 
+	 *
 	 * @param cantidad Numero de datos a procesar
 	 * @return cantidad sub-nodos o subprocesos a ejecutar.
 	 */

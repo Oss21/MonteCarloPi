@@ -44,3 +44,6 @@ semilla: 10, Cantidad de puntos: 1000000000000
 
 pi = 3.141591246982584, Demoro: 2001644, nodos de procesamiento: 40.0
 pi = 3.141591246982584, Demoro: 2001301, nodos de procesamiento: 40.0
+pi = 3.141591246982584, Demoro: 2014639, nodos de procesamiento: 40.0
+best pi = 3.14159 1246982584
+pi real = 3.14159 265359
